@@ -1,9 +1,8 @@
 name: Test Existing Docker Image
 
 on:
-  workflow_dispatch: # Manually trigger workflow
-  schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight
+  push:
+    branches: [ main ]  # Run workflow on push to main branch
 
 jobs:
   test-existing-image:
