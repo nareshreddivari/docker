@@ -1,7 +1,7 @@
 ###################################################
 # Stage: base
 # 
-# This base stage ensures all other stages are using the same base image
+# This base stage ensures all other stages are using the same base images
 # and provides common configuration for all stages, such as the working dir.
 ###################################################
 FROM node:20 AS base
