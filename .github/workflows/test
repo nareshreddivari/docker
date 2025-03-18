@@ -1,0 +1,26 @@
+name: Test Existing Docker Image
+
+on:
+  workflow_dispatch: # Manually trigger workflow
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight
+
+jobs:
+  test-existing-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '7.x'
+
+      - name: Setup Testcontainers Cloud
+        uses: atomicjar/testcontainers-cloud-setup-action@main
+        with:
+          token: ${{ secrets.TC_CLOUD_TOKEN }}
+
+      - name: Run Tests using Testcontainers
+        run: dotnet test --logger:"console;verbosity=detailed"
